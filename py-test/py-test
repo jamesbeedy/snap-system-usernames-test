@@ -6,5 +6,6 @@ import pwd
 
 if __name__ == "__main__":
     uid = os.geteuid()
+    os.seteuid(uid)
     username = pwd.getpwuid(uid).pw_name
     print(f"{username} ({uid})\n")
