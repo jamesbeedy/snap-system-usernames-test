@@ -1,0 +1,32 @@
+name: slurmmer
+summary: Slurm Workload Manager
+description: |
+  Slurm is an open source, fault-tolerant, and highly scalable cluster management and
+  job scheduling system for large and small Linux clusters.
+
+version: 0.0.1
+
+grade: stable
+confinement: strict
+
+base: core18
+
+system-usernames:
+  snap_daemon: shared
+
+apps:
+  slurmmer:
+    daemon: oneshot
+    command: drop-user $SNAP/bin/py-test
+
+parts:
+  py-test:
+    plugin: python
+    source: py-test
+
+  drop-user:
+    plugin: make
+    source: drop_user
+    build-packages:
+      - gcc
+      - make
